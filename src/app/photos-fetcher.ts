@@ -1,22 +1,22 @@
-export interface ResponseFromServer {
+export interface IResponseFromServer {
   introPart?:Record<string, unknown>[],
-  mainPart?:MainPartItem[]
+  mainPart?:IMainPartItem[]
 }
 
-export interface MainPartItem {
-  content?:ContentItem;
+export interface IMainPartItem {
+  content?:IContentItem;
   type?:string;
   visible?:string[];
   moCode?:string;
 }
 
-export interface ContentItem {
+export interface IContentItem {
   banner?:Record<string, unknown>;
-  items?:CrazyPricesItem[];
+  items?:ICrazyPricesItem[];
   title?:string;
 }
 
-export interface CrazyPricesItem {
+export interface ICrazyPricesItem {
   name:string;
   biddingPrice: {amount: string, currency: string};
   images: {

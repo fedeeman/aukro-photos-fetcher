@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Image} from "./Image";
+import {IImage} from './Image';
 
 @Component({
   selector: 'app-image-gallery',
@@ -8,12 +8,19 @@ import {Image} from "./Image";
 })
 export class ImageGalleryComponent {
 
-  _images:Image[] = [];
+  _images:IImage[] = [];
 
-  @Input() set images(value:Image[]) {
+  /**
+   * Setter for images.
+   * @param value - Array of image objects
+   */
+  @Input() set images(value:IImage[]) {
     this._images = value.slice(0,4);
   }
 
+  /**
+   * Getter for images.
+   */
   get images() {
     return this._images;
   }

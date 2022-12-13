@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   gap: 16px;
   .image-wrapper {
-    width: calc(50% - 8px); // images is half of max-width:750px - half of gap (16px/2)
+    width: calc(50% - 8px); // images are half of max-width:750px minus a half of gap (16px/2)
     max-height: 270px;
     margin: 0 auto;
     position: relative;

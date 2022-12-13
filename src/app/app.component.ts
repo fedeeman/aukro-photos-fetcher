@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PhotosFetcherService} from './photos-fetcher.service';
-import {Image} from './image-gallery/Image';
+import {IImage} from './image-gallery/Image';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import {Image} from './image-gallery/Image';
 export class AppComponent implements OnInit {
   title = 'Photo Fetcher';
   showPhotosInGrayscale = false;
-  images:Image[] = [];
+  images:IImage[] = [];
   isLoading = false;
 
   constructor(public photosFetcherSvc: PhotosFetcherService) {
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
    * Used to set loading spinner.
    * @param $event - Array of image objects
    */
-  onPhotosFetchedHandler($event:Image[]) {
+  onPhotosFetchedHandler($event:IImage[]) {
     // this should be handled differently (as reaction to image load event),
     // because right now it is displaying data before images are loaded
     this.images = $event;

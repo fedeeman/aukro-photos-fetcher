@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {catchError, delay, map, Observable} from 'rxjs';
-import {Image} from "./image-gallery/Image";
-import {CrazyPricesItem, MainPartItem, ResponseFromServer} from "./photos-fetcher";
+import {IImage} from './image-gallery/Image';
+import {ICrazyPricesItem, IMainPartItem, IResponseFromServer} from './photos-fetcher';
 
 const url = 'https://aukro.cz/backend/api/homepage';
 
@@ -17,17 +17,17 @@ export class PhotosFetcherService {
    * Gets new photos.
    * @returns Returns an observable of objects with images.
    */
-  getNewPhotos():Observable<Image[]> {
-    return this.http.get<ResponseFromServer>(url)
+  getNewPhotos():Observable<IImage[]> {
+    return this.http.get<IResponseFromServer>(url)
       .pipe(
         delay(500), // just for loading spinner effect
-        map((data:ResponseFromServer) => {
-          return <MainPartItem>data.mainPart?.find((item: MainPartItem) => {
+        map((data:IResponseFromServer) => {
+          return <IMainPartItem>data.mainPart?.find((item: IMainPartItem) => {
             return item.type === 'CrazyPricesItems';
           });
         }),
-        map((data:MainPartItem) => {
-          const imageObjects:Image[] | undefined = data.content?.items?.map((item:CrazyPricesItem) => {
+        map((data:IMainPartItem) => {
+          const imageObjects:IImage[] | undefined = data.content?.items?.map((item:ICrazyPricesItem) => {
             return {
               name: item.name,
               price: item.biddingPrice.amount + ' ' + item.biddingPrice.currency,
@@ -36,7 +36,7 @@ export class PhotosFetcherService {
           });
 
           /**
-           * Added sorting just for examples (bigger possibility of displaying different images)
+           * Added sorting just for examples (Higher possibility of displaying different images)
            */
           return imageObjects ? imageObjects.sort(() => Math.random() - 0.5) : [];
         }),
