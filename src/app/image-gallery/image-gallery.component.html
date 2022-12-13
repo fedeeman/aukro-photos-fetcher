@@ -1,0 +1,9 @@
+<div class="images-wrapper">
+  <div *ngFor="let image of _images" class="image-wrapper">
+    <img [src]="image.imageUrl" (load)="imageLoaded($event)" [alt]="image.name"/>
+    <div class="content">
+      <h2 [title]="image.name">{{image.name}}</h2>
+      <p>{{image.price}}</p>
+    </div>
+  </div>
+</div>
