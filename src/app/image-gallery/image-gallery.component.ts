@@ -12,15 +12,9 @@ export class ImageGalleryComponent {
 
   @Input() set images(value:Image[]) {
     this._images = value.slice(0,4);
-    console.log(this._images);
   }
 
   get images() {
     return this._images;
   }
-
-  imageLoaded($event:any) {
-    console.log($event);
-  }
-
 }
